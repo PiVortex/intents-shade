@@ -13,7 +13,7 @@ mod collateral;
 mod intents;
 
 const INTENTS_GAS: Gas = Gas::from_tgas(50);
-const INTENTS_ATTACHED_DEPOSIT: NearToken = NearToken::from_yoctonear(0);
+const INTENTS_ATTACHED_DEPOSIT: NearToken = NearToken::from_yoctonear(1);
 
 #[near(serializers = [json, borsh])]
 #[derive(Clone)]
