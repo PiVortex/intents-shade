@@ -8,8 +8,9 @@ use near_sdk::{
 };
 
 use dcap_qvl::{verify, QuoteCollateralV3};
-use intents::intents_contract;
+use intents_interface::intents_contract;
 mod collateral;
+mod intents_interface;
 mod intents;
 
 const INTENTS_GAS: Gas = Gas::from_tgas(50);
@@ -29,6 +30,7 @@ pub struct Contract {
     pub approved_codehashes: IterableSet<String>,
     pub worker_by_account_id: IterableMap<AccountId, Worker>,
     pub intents_contract_id: AccountId,
+    pub base_token_id: AccountId,
 }
 
 #[near]
@@ -41,6 +43,7 @@ impl Contract {
             approved_codehashes: IterableSet::new(b"a"),
             worker_by_account_id: IterableMap::new(b"b"),
             intents_contract_id: "intents.near".parse().unwrap(),
+            base_token_id: "17208628f84f5d6ad33f0da3bbbeb27ffcb398eac501a31bd6ad2011e36133a1".parse().unwrap(),
         }
     }
 
@@ -92,20 +95,6 @@ impl Contract {
         );
 
         true
-    }
-
-    pub fn trade(
-        &mut self,
-        receiver_id: AccountId,
-        token_id: String,
-        amount: U128,
-    ) -> Promise {
-        // self.require_approved_codehash();
-
-        intents_contract::ext(self.intents_contract_id.clone())
-            .with_static_gas(INTENTS_GAS)
-            .with_attached_deposit(INTENTS_ATTACHED_DEPOSIT)
-            .mt_transfer(receiver_id, token_id, amount)
     }
 
     // views

@@ -2,7 +2,7 @@
   "name": "my-shade-agent-app",
   "version": "1.0.0",
   "private": true,
-  "type": "commonjs",
+  "type": "module",
   "scripts": {
     "dev": "tsx src/index.ts",
     "build": "tsc",
@@ -14,12 +14,13 @@
     "phala:deploy": "phala cvms create --name my-app --vcpu 1 --compose ./docker-compose.yaml --env-file ./.env.development.local"
   },
   "dependencies": {
-    "@hono/node-server": "^1.15.0",
-    "@neardefi/shade-agent-js": "^1.0.0",
-    "cors": "^2.8.5",
+    "@near-js/accounts": "^2.3.3",
+    "@near-js/providers": "^2.3.3",
+    "@near-js/signers": "^2.3.3",
+    "@near-js/tokens": "^2.3.3",
+    "@near-js/transactions": "^2.3.3",
     "dotenv": "^16.5.0",
-    "ethers": "^6.11.1",
-    "hono": "^4.8.4"
+    "near-seed-phrase": "^0.2.1"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",

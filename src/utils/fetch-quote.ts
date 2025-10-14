@@ -9,9 +9,9 @@ export async function getQuote() {
     depositMode: "SIMPLE",
     swapType: "EXACT_INPUT",
     slippageTolerance: 100,
-    originAsset: "nep141:eth-0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48.omft.near",
+    originAsset: "nep141:eth-0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48.omft.near", // ETH
     depositType: "INTENTS",
-    destinationAsset: "nep141:wrap.near",
+    destinationAsset: "nep141:wrap.near", // USDC on NEAR 
     amount: "100000",
     refundTo: contractId,
     refundType: "INTENTS",
@@ -45,3 +45,5 @@ export async function getQuote() {
     return null;
   }
 }
+
+
